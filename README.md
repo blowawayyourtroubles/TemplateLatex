@@ -19,7 +19,7 @@
 
 ## 📸 Vista Previa
 
-![Preview](preview.png)
+![Preview](Preview.gif)
 
 ## 📋 Requisitos
 
