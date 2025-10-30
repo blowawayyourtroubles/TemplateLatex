@@ -88,21 +88,6 @@ lm                   % Fuentes Latin Modern
 hyperref             % Enlaces clickeables en PDF
 ```
 
-## 🚀 Instalación
-
-### Opción 1: Clonar el repositorio
-
-```bash
-git clone https://github.com/tu-usuario/latex-math-template.git
-cd latex-math-template
-```
-
-### Opción 2: Descargar ZIP
-
-1. Haz clic en el botón verde **"Code"**
-2. Selecciona **"Download ZIP"**
-3. Extrae el archivo en tu carpeta de trabajo
-
 ## ⚙️ Configuración de Paquetes
 
 ### En MiKTeX (Windows)
