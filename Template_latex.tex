@@ -1,0 +1,621 @@
+\documentclass[12pt,a4paper]{article}
+
+% ========================================
+% PAQUETES ESENCIALES
+% ========================================
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{lmodern} % Fuente moderna
+\usepackage{hyperref} % Enlaces clickeables en el PDF
+
+\pgfplotsset{compat=1.18}
+\geometry{margin=1in, top=1.2in, bottom=1in}
+
+% ========================================
+% CONFIGURACIÓN DE HYPERREF
+% ========================================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=accent,
+    filecolor=primary,
+    urlcolor=primary,
+    citecolor=secondary,
+    pdftitle={Template Matemáticas Institucional},
+    pdfauthor={Nombre del Autor},
+    pdfsubject={Matemáticas},
+    pdfkeywords={LaTeX, Matemáticas, Template},
+    bookmarksnumbered=true,
+    bookmarksopen=true
+}
+
+% ========================================
+% PALETA DE COLORES INSTITUCIONAL
+% ========================================
+\definecolor{primary}{HTML}{0077b6}      % Azul institucional
+\definecolor{secondary}{HTML}{023e8a}    % Azul oscuro
+\definecolor{accent}{HTML}{48cae4}       % Azul claro/cyan
+\definecolor{highlight}{HTML}{90e0ef}    % Azul muy claro
+\definecolor{success}{HTML}{06a77d}      % Verde
+\definecolor{warning}{HTML}{f77f00}      % Naranja
+\definecolor{danger}{HTML}{d62828}       % Rojo
+\definecolor{dark}{HTML}{293133}         % Gris oscuro
+\definecolor{light}{HTML}{f8f9fa}        % Gris muy claro
+\definecolor{background}{HTML}{1a1d1e}   % Fondo oscuro
+
+% ========================================
+% CONFIGURACIÓN DE PÁGINA
+% ========================================
+\pagecolor{dark}
+\color{white}
+
+% ========================================
+% ENCABEZADO Y PIE DE PÁGINA
+% ========================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{accent}{\textbf{Institución / Departamento}}}
+\fancyhead[R]{\textcolor{highlight}{\nouppercase{\leftmark}}}
+\fancyfoot[C]{\textcolor{accent}{\thepage}}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{primary}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{primary}\leaders\hrule height \footrulewidth\hfill}}
+
+% ========================================
+% FORMATO DE TÍTULOS Y SECCIONES
+% ========================================
+\titleformat{\section}
+{\color{accent}\Large\bfseries}
+{\textcolor{primary}{\thesection.}}{0.5em}{}
+[\textcolor{primary}{\titlerule[1.5pt]}]
+
+\titleformat{\subsection}
+{\color{highlight}\large\bfseries}
+{\textcolor{accent}{\thesubsection}}{0.5em}{}
+[\textcolor{accent}{\titlerule[0.8pt]}]
+
+\titleformat{\subsubsection}
+{\color{white}\normalsize\bfseries}
+{\textcolor{highlight}{\thesubsubsection}}{0.5em}{}
+
+% ========================================
+% CAJAS PERSONALIZADAS
+% ========================================
+
+% Caja de Definición
+\newtcolorbox{definicion}[2][]{
+	colback=dark,
+	colframe=primary,
+	coltext=white,
+	boxrule=2pt,
+	arc=4mm,
+	leftrule=8mm,
+	title={\textcolor{white}{DEFINICIÓN: #2}},
+	fonttitle=\bfseries\large,
+	coltitle=white,
+	attach boxed title to top left={yshift=-3mm, xshift=5mm},
+	boxed title style={colback=primary, arc=3mm},
+	#1
+}
+
+% Caja de Teorema
+\newtcolorbox{teorema}[2][]{
+	colback=dark,
+	colframe=secondary,
+	coltext=white,
+	boxrule=2pt,
+	arc=4mm,
+	leftrule=8mm,
+	title={\textcolor{white}{TEOREMA: #2}},
+	fonttitle=\bfseries\large,
+	coltitle=white,
+	attach boxed title to top left={yshift=-3mm, xshift=5mm},
+	boxed title style={colback=secondary, arc=3mm},
+	#1
+}
+
+% Caja de Ejemplo
+\newtcolorbox{ejemplo}[2][]{
+	colback=dark,
+	colframe=success,
+	coltext=white,
+	boxrule=1.5pt,
+	arc=3mm,
+	title={\textcolor{white}{EJEMPLO: #2}},
+	fonttitle=\bfseries,
+	coltitle=white,
+	attach boxed title to top left={yshift=-2mm, xshift=5mm},
+	boxed title style={colback=success, arc=2mm},
+	#1
+}
+
+% Caja de Nota/Observación
+\newtcolorbox{nota}[2][]{
+	colback=dark,
+	colframe=warning,
+	coltext=white,
+	boxrule=1.5pt,
+	arc=3mm,
+	title={\textcolor{white}{NOTA: #2}},
+	fonttitle=\bfseries,
+	coltitle=white,
+	attach boxed title to top left={yshift=-2mm, xshift=5mm},
+	boxed title style={colback=warning, arc=2mm},
+	#1
+}
+
+% Caja de Advertencia
+\newtcolorbox{advertencia}[2][]{
+	colback=dark,
+	colframe=danger,
+	coltext=white,
+	boxrule=2pt,
+	arc=3mm,
+	title={\textcolor{white}{ADVERTENCIA: #2}},
+	fonttitle=\bfseries,
+	coltitle=white,
+	attach boxed title to top left={yshift=-2mm, xshift=5mm},
+	boxed title style={colback=danger, arc=2mm},
+	#1
+}
+
+% Caja Simple para Fórmulas
+\newtcolorbox{formulabox}[1][]{
+	colback=background,
+	colframe=accent,
+	coltext=white,
+	boxrule=1pt,
+	arc=2mm,
+	left=5pt,
+	right=5pt,
+	top=5pt,
+	bottom=5pt,
+	#1
+}
+
+% Caja de Ejercicio (NUEVA)
+\newtcolorbox{ejercicio}[2][]{
+	colback=dark,
+	colframe=highlight,
+	coltext=white,
+	boxrule=1.5pt,
+	arc=3mm,
+	title={\textcolor{dark}{EJERCICIO: #2}},
+	fonttitle=\bfseries,
+	coltitle=dark,
+	attach boxed title to top left={yshift=-2mm, xshift=5mm},
+	boxed title style={colback=highlight, arc=2mm},
+	#1
+}
+
+% ========================================
+% ENTORNOS MATEMÁTICOS PERSONALIZADOS
+% ========================================
+\newtheoremstyle{customtheorem}
+{10pt}{10pt}{\color{white}}{}{\color{accent}\bfseries}{:}{.5em}{}
+
+\theoremstyle{customtheorem}
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{lem}[thm]{Lema}
+\newtheorem{prop}[thm]{Proposición}
+\newtheorem{cor}[thm]{Corolario}
+\newtheorem{defn}[thm]{Definición}
+
+% ========================================
+% COMANDOS PERSONALIZADOS
+% ========================================
+
+% Separadores visuales
+\newcommand{\separator}{
+	\vspace{10pt}
+	\noindent\textcolor{primary}{\rule{\textwidth}{1.5pt}}
+	\vspace{10pt}
+}
+
+\newcommand{\thinline}{
+	\vspace{5pt}
+	\noindent\textcolor{accent}{\rule{\textwidth}{0.5pt}}
+	\vspace{5pt}
+}
+
+% Destacar texto
+\newcommand{\highlight}[1]{\textcolor{accent}{\textbf{#1}}}
+\newcommand{\important}[1]{\textcolor{warning}{\textbf{#1}}}
+\newcommand{\critical}[1]{\textcolor{danger}{\textbf{#1}}}
+
+% Fórmula destacada
+\newcommand{\mainformula}[1]{
+	\begin{center}
+		\colorbox{secondary}{\textcolor{white}{$\displaystyle #1$}}
+	\end{center}
+}
+
+% Conjuntos numéricos
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+% Vectores y matrices
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+
+% Derivadas
+\newcommand{\dv}[2]{\frac{d#1}{d#2}}
+\newcommand{\dvn}[3]{\frac{d^{#3}#1}{d#2^{#3}}}
+\newcommand{\pdv}[2]{\frac{\partial #1}{\partial #2}}
+
+% Integrales
+\newcommand{\inte}[2]{\int_{#1}^{#2}}
+\newcommand{\intinf}{\int_{-\infty}^{\infty}}
+
+% ========================================
+% INFORMACIÓN DEL DOCUMENTO
+% ========================================
+\title{
+	\textcolor{accent}{\Huge\textbf{Título del Documento}}\\
+	\vspace{5pt}
+	\textcolor{highlight}{\Large Subtítulo o Tema Específico}
+}
+\author{
+	\textcolor{white}{\Large Nombre del Autor}\\
+	\textcolor{accent}{Institución / Departamento de Matemáticas}\\
+	\textcolor{highlight}{\texttt{correo@institucion.edu}}
+}
+\date{\textcolor{accent}{\today}}
+
+% ========================================
+% INICIO DEL DOCUMENTO
+% ========================================
+\begin{document}
+
+% Portada
+\maketitle
+\thispagestyle{empty}
+
+\vspace{20pt}
+\begin{center}
+\colorbox{primary}{\parbox{0.85\textwidth}{\color{white}\centering\large
+Template profesional para documentos matemáticos con estilo institucional moderno. Incluye cajas personalizadas, comandos especializados, gráficas con TikZ/PGFplots, y formato completamente personalizable.
+}}
+\end{center}
+
+\newpage
+\tableofcontents
+\newpage
+
+% ========================================
+% SECCIÓN 1: CAJAS Y ENTORNOS
+% ========================================
+\section{Cajas y Entornos Especiales}
+
+\subsection{Definiciones y Teoremas}
+
+\begin{definicion}{Límite de una función}
+Sea $f: \R \to \R$ una función y $a \in \R$. Decimos que el \highlight{límite} de $f$ cuando $x$ tiende a $a$ es $L$ si:
+\[
+\forall \varepsilon > 0, \exists \delta > 0 : 0 < \abs{x - a} < \delta \implies \abs{f(x) - L} < \varepsilon
+\]
+Notación: $\displaystyle\lim_{x \to a} f(x) = L$
+\end{definicion}
+
+\vspace{10pt}
+
+\begin{teorema}{Regla de la Cadena}
+Sean $f: \R \to \R$ y $g: \R \to \R$ funciones derivables. Entonces la composición $f \circ g$ es derivable y:
+\mainformula{(f \circ g)'(x) = f'(g(x)) \cdot g'(x)}
+\end{teorema}
+
+\vspace{10pt}
+
+\begin{ejemplo}{Derivada de una función compuesta}
+Sea $h(x) = \sin(x^2)$. Identificamos $f(u) = \sin u$ y $g(x) = x^2$.
+
+Aplicando la regla de la cadena:
+\begin{align*}
+h'(x) &= f'(g(x)) \cdot g'(x) \\
+&= \cos(x^2) \cdot 2x \\
+&= 2x\cos(x^2)
+\end{align*}
+\end{ejemplo}
+
+\vspace{10pt}
+
+\begin{nota}{Continuidad y derivabilidad}
+Si una función es derivable en un punto, entonces es continua en ese punto. Sin embargo, \important{el recíproco no es cierto}. Ejemplo: $f(x) = \abs{x}$ es continua en $x=0$ pero no derivable.
+\end{nota}
+
+\vspace{10pt}
+
+\begin{advertencia}{Error común}
+\critical{NO} confundir la derivada de un producto con el producto de derivadas:
+\[
+(f \cdot g)' \neq f' \cdot g'
+\]
+La regla correcta es: $(f \cdot g)' = f' \cdot g + f \cdot g'$ (Regla del producto)
+\end{advertencia}
+
+\vspace{10pt}
+
+\begin{ejercicio}{Para practicar}
+Calcular las siguientes derivadas:
+\begin{enumerate}
+\item $\dv{}{x}\left(e^{x^2}\right)$
+\item $\dv{}{x}\left(\ln(\cos x)\right)$
+\item $\dv{}{x}\left(x^x\right)$ \textit{(Sugerencia: usar logaritmos)}
+\end{enumerate}
+\end{ejercicio}
+
+\separator
+
+% ========================================
+% SECCIÓN 2: TABLAS Y FÓRMULAS
+% ========================================
+\section{Tablas de Fórmulas}
+
+\subsection{Derivadas de Funciones Básicas}
+
+\begin{center}
+\begin{tabular}{>{\color{accent}\bfseries}l >{\color{white}}c >{\color{highlight}}c}
+\toprule
+\textcolor{primary}{\textbf{Tipo}} & \textcolor{primary}{\textbf{$f(x)$}} & \textcolor{primary}{\textbf{$f'(x)$}} \\
+\midrule
+Constante & $c$ & $0$ \\
+Identidad & $x$ & $1$ \\
+Potencia & $x^n$ & $nx^{n-1}$ \\
+Exponencial natural & $e^x$ & $e^x$ \\
+Exponencial general & $a^x$ & $a^x \ln a$ \\
+Logaritmo natural & $\ln x$ & $\dfrac{1}{x}$ \\
+Logaritmo general & $\log_a x$ & $\dfrac{1}{x \ln a}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\thinline
+
+\subsection{Derivadas Trigonométricas}
+
+\begin{formulabox}
+\begin{multicols}{2}
+\begin{itemize}[leftmargin=*, label=\textcolor{primary}{$\bullet$}]
+\item $\dv{}{x}[\sin x] = \cos x$
+\item $\dv{}{x}[\cos x] = -\sin x$
+\item $\dv{}{x}[\tan x] = \sec^2 x$
+\item $\dv{}{x}[\cot x] = -\csc^2 x$
+\item $\dv{}{x}[\sec x] = \sec x \tan x$
+\item $\dv{}{x}[\csc x] = -\csc x \cot x$
+\end{itemize}
+\end{multicols}
+\end{formulabox}
+
+\subsection{Reglas de Derivación}
+
+\begin{formulabox}
+\textcolor{accent}{\textbf{Reglas básicas:}}
+\begin{align*}
+\textcolor{highlight}{\text{Suma:}} \quad & (f + g)' = f' + g' \\
+\textcolor{highlight}{\text{Producto:}} \quad & (f \cdot g)' = f' \cdot g + f \cdot g' \\
+\textcolor{highlight}{\text{Cociente:}} \quad & \left(\frac{f}{g}\right)' = \frac{f' \cdot g - f \cdot g'}{g^2} \\
+\textcolor{highlight}{\text{Cadena:}} \quad & (f \circ g)'(x) = f'(g(x)) \cdot g'(x)
+\end{align*}
+\end{formulabox}
+
+\separator
+
+% ========================================
+% SECCIÓN 3: LISTAS Y PASOS
+% ========================================
+\section{Procedimientos y Métodos}
+
+\subsection{Pasos para derivar funciones complejas}
+
+\begin{enumerate}[label=\textcolor{accent}{\textbf{Paso \arabic*:}}, leftmargin=*, itemsep=8pt]
+\item \highlight{Identificar} la estructura de la función (producto, cociente, composición)
+\item \highlight{Determinar} qué reglas de derivación aplicar
+\item \highlight{Derivar} las funciones componentes (si es necesario)
+\item \highlight{Aplicar} la regla correspondiente
+\item \highlight{Simplificar} el resultado algebraicamente
+\end{enumerate}
+
+\subsection{Propiedades importantes}
+
+\begin{itemize}[label=\textcolor{primary}{$\blacktriangleright$}, leftmargin=*, itemsep=5pt]
+\item \highlight{Linealidad:} $(af + bg)' = af' + bg'$ para $a, b \in \R$
+\item \highlight{Derivabilidad implica continuidad:} Si $f$ es derivable en $a$, entonces $f$ es continua en $a$
+\item \highlight{Puntos críticos:} Los extremos locales ocurren donde $f'(x) = 0$ o $f'$ no existe
+\item \highlight{Teorema del Valor Medio:} Conecta la derivada con la pendiente promedio
+\end{itemize}
+
+\separator
+
+% ========================================
+% SECCIÓN 4: GRÁFICAS CON TIKZ
+% ========================================
+\section{Visualizaciones con TikZ/PGFplots}
+
+\subsection{Función y su derivada}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+	width=13cm,
+	height=9cm,
+	axis lines=middle,
+	xlabel={$x$},
+	ylabel={$y$},
+	xlabel style={color=accent, font=\large},
+	ylabel style={color=accent, font=\large},
+	xmin=-3.5, xmax=3.5,
+	ymin=-2, ymax=10,
+	samples=150,
+	grid=major,
+	grid style={color=dark!50, dashed},
+	tick style={color=accent},
+	legend style={
+		at={(0.02,0.98)},
+		anchor=north west,
+		fill=dark,
+		draw=primary,
+		text=white,
+		font=\small
+	},
+	title={\textcolor{accent}{Función Cuadrática y su Derivada}},
+	title style={font=\large\bfseries}
+]
+
+% Función original
+\addplot[primary, ultra thick, domain=-3:3, smooth] {x^2};
+\addlegendentry{$f(x) = x^2$}
+
+% Derivada
+\addplot[accent, ultra thick, domain=-3:3, dashed, smooth] {2*x};
+\addlegendentry{$f'(x) = 2x$}
+
+% Punto donde la derivada es cero
+\addplot[success, only marks, mark=*, mark size=3pt] coordinates {(0,0)};
+\node[color=success, above right] at (axis cs:0,0) {$f'(0)=0$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\separator
+
+% ========================================
+% SECCIÓN 5: ECUACIONES Y DEMOSTRACIONES
+% ========================================
+\section{Ecuaciones Matemáticas}
+
+\subsection{Ecuaciones numeradas}
+
+Consideremos la integral definida del Teorema Fundamental del Cálculo:
+
+\begin{equation}
+\inte{a}{b} f'(x)\,dx = f(b) - f(a)
+\label{eq:tfc}
+\end{equation}
+
+Podemos referenciar la ecuación~\ref{eq:tfc} más adelante.
+
+\subsection{Sistema de ecuaciones}
+
+Las derivadas de las funciones trigonométricas básicas son:
+
+\begin{align}
+\dv{}{x}[\sin x] &= \cos x \\
+\dv{}{x}[\cos x] &= -\sin x \\
+\dv{}{x}[e^x] &= e^x
+\end{align}
+
+\subsection{Fórmulas destacadas}
+
+\mainformula{\pdv{^2 f}{x \partial y} = \pdv{}{x}\left(\pdv{f}{y}\right)}
+
+\separator
+
+% ========================================
+% SECCIÓN 6: TEOREMAS Y DEMOSTRACIONES
+% ========================================
+\section{Teoremas y Demostraciones}
+
+\begin{thm}[Teorema del Valor Medio de Lagrange]
+\label{thm:tvm}
+Sea $f:[a,b] \to \R$ una función continua en $[a,b]$ y derivable en $(a,b)$. Entonces existe al menos un punto $c \in (a,b)$ tal que:
+\[
+f'(c) = \frac{f(b)-f(a)}{b-a}
+\]
+\end{thm}
+
+\begin{proof}
+\textcolor{highlight}{\textbf{Demostración:}} 
+
+Definimos la función auxiliar:
+\[
+g(x) = f(x) - f(a) - \frac{f(b)-f(a)}{b-a}(x-a)
+\]
+
+Observamos que $g$ representa la diferencia entre $f$ y la recta secante que une $(a, f(a))$ con $(b, f(b))$.
+
+\textit{Propiedades de $g$:}
+\begin{itemize}
+\item $g(a) = f(a) - f(a) - 0 = 0$
+\item $g(b) = f(b) - f(a) - (f(b) - f(a)) = 0$
+\item $g$ es continua en $[a,b]$ y derivable en $(a,b)$
+\end{itemize}
+
+Por el \textcolor{accent}{Teorema de Rolle}, existe $c \in (a,b)$ tal que $g'(c) = 0$.
+
+Calculando $g'(c)$:
+\[
+g'(c) = f'(c) - \frac{f(b)-f(a)}{b-a} = 0
+\]
+
+Por lo tanto:
+\[
+f'(c) = \frac{f(b)-f(a)}{b-a} \qquad \qed
+\]
+\end{proof}
+
+\begin{cor}
+Si $f'(x) = 0$ para todo $x \in (a,b)$, entonces $f$ es constante en $[a,b]$.
+\end{cor}
+
+\separator
+
+% ========================================
+% SECCIÓN 7: COMANDOS PERSONALIZADOS
+% ========================================
+\section{Uso de Comandos Personalizados}
+
+Este template incluye múltiples comandos para facilitar la escritura:
+
+\subsection{Conjuntos numéricos}
+Los conjuntos $\N$, $\Z$, $\Q$, $\R$ y $\C$ se escriben con comandos simples: \texttt{\textbackslash N}, \texttt{\textbackslash Z}, \texttt{\textbackslash Q}, \texttt{\textbackslash R}, \texttt{\textbackslash C}
+
+\subsection{Derivadas e integrales}
+\begin{itemize}
+\item Derivada ordinaria: $\dv{y}{x}$ con \texttt{\textbackslash dv\{y\}\{x\}}
+\item Derivada de orden $n$: $\dvn{y}{x}{3}$ con \texttt{\textbackslash dvn\{y\}\{x\}\{3\}}
+\item Derivada parcial: $\pdv{f}{x}$ con \texttt{\textbackslash pdv\{f\}\{x\}}
+\item Integral definida: $\inte{0}{1} f(x)\,dx$ con \texttt{\textbackslash inte\{0\}\{1\}}
+\end{itemize}
+
+\subsection{Normas y valores absolutos}
+\begin{itemize}
+\item Valor absoluto: $\abs{x}$ con \texttt{\textbackslash abs\{x\}}
+\item Norma: $\norm{\vect{v}}$ con \texttt{\textbackslash norm\{\textbackslash vect\{v\}\}}
+\item Vector: $\vect{u}$ con \texttt{\textbackslash vect\{u\}}
+\end{itemize}
+
+\separator
+
+% ========================================
+% PIE DE PÁGINA FINAL
+% ========================================
+\vfill
+\begin{center}
+\textcolor{primary}{\rule{12cm}{2pt}}\\[10pt]
+\textcolor{highlight}{\LARGE\textbf{Fin del Template}}\\[6pt]
+\textcolor{accent}{\Large Template Matemáticas - Estilo Institucional Profesional}\\[4pt]
+\textcolor{white}{Elaborado en \LaTeX\ | \today}\\[2pt]
+\textcolor{highlight}{\small Versión 2.0 - Optimizada y mejorada}
+\end{center}
+
+\end{document}
