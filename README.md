@@ -31,10 +31,9 @@ TeXworks: botón de compilar
 
 Terminal: pdflatex template.tex (dos veces)
 
-# Personalización
-Puedes cambiar los colores en las primeras líneas del archivo. Hay paletas sugeridas incluidas.
 # Paletas alternativas sugeridas:
 
+Puedes cambiar los colores en estas líneas del archivo.
 
 **Paleta Azul:**
 ```latex
