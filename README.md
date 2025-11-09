@@ -8,7 +8,7 @@
 Template con estilo moderno para escribir documentos matemáticos en LaTeX. Incluye cajas personalizadas, comandos útiles y soporte para gráficas.
 
 # Vista previa
-![Preview](Template.jpg)
+![Preview](preview.gif)
 
 # Requisitos
 
@@ -68,9 +68,9 @@ Puedes cambiar los colores en las primeras líneas del archivo. Hay paletas suge
 # Archivos
 ```bash
 latex-math-template/
-├── template.tex
+├── template.ltx
+├── template_institucional.pdf
 ├── README.md
-├── preview.png
-└── examples/
+└── preview.gif
 ```
 **: Octubre 2025
