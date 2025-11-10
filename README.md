@@ -1,4 +1,4 @@
-## Template LaTeX para Documentos Institucionales
+# Template LaTeX para Documentos Institucionales
 
 [![LaTeX](https://img.shields.io/badge/LaTeX-Template-008080?style=for-the-badge&logo=latex)](https://www.latex-project.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
