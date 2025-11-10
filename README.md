@@ -1,4 +1,4 @@
-# Template LaTeX para Documentos Institucionales
+## Template LaTeX para Documentos Institucionales
 
 [![LaTeX](https://img.shields.io/badge/LaTeX-Template-008080?style=for-the-badge&logo=latex)](https://www.latex-project.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
@@ -8,7 +8,7 @@
 Template con estilo moderno para escribir documentos matemáticos en LaTeX. Incluye cajas personalizadas, comandos útiles y soporte para gráficas.
 
 # Vista previa
-![Preview](preview.gif)
+![Preview](preview.jpg)
 
 # Requisitos
 
