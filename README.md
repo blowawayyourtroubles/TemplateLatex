@@ -8,7 +8,7 @@
 Template con estilo moderno para escribir documentos matemáticos en LaTeX. Incluye cajas personalizadas, comandos útiles y soporte para gráficas.
 
 # Vista previa
-![Preview](preview.jpg)
+![Preview](template_institucional.pdf)
 
 # Requisitos
 
